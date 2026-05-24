@@ -48,6 +48,18 @@
       letter-spacing: -1px;
     }
 
+    .menu-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      font-weight: 900;
+      color: #70291f;
+      cursor: pointer;
+    }
+
     nav {
       display: contents;
     }
@@ -450,46 +462,59 @@
 
     @media (max-width: 1024px) {
       header {
-        display: block;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
         min-height: auto;
         position: sticky;
         top: 0;
         background: #fff8ef;
+        padding: 0;
       }
 
       .logo {
-        justify-content: center;
-        padding: 16px 10px 12px;
+        justify-content: flex-start;
+        padding: 16px 20px;
         border-right: none;
-        border-bottom: 1.5px solid #7b3327;
-        font-size: 28px;
+        border-bottom: none;
+        font-size: 26px;
+      }
+
+      .hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 20px;
       }
 
       nav {
-        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        white-space: nowrap;
-        padding: 10px 14px;
+        display: none;
+        grid-column: 1 / -1;
+        background: #fff8ef;
+        border-top: 1.5px solid #7b3327;
         border-bottom: 1.5px solid #7b3327;
-        scrollbar-width: none;
+        padding: 12px 16px 16px;
       }
 
-      nav::-webkit-scrollbar {
-        display: none;
+      .menu-toggle:checked ~ nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
 
       nav a {
         border-right: none;
-        flex: 0 0 auto;
+        width: 100%;
         padding: 0;
       }
 
       nav a span {
-        display: inline-block;
-        font-size: 11px;
-        padding: 8px 14px;
-        border-radius: 22px;
+        width: 100%;
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        padding: 11px 14px;
+        border-radius: 18px;
       }
 
       .hero,
@@ -549,14 +574,14 @@
         text-align: center;
       }
 
-      nav {
-        justify-content: flex-start;
-        padding: 8px 12px;
+      .hamburger {
+        font-size: 25px;
+        padding: 14px 18px;
       }
 
       nav a span {
-        font-size: 10px;
-        padding: 7px 12px;
+        font-size: 11px;
+        padding: 10px 12px;
       }
 
       .hero {
@@ -683,6 +708,8 @@
 <body>
   <header>
     <div class="logo">rupa_cerita</div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav>
       <a href="#home"><span>HOME</span></a>
       <a href="#about"><span>ABOUT</span></a>
@@ -712,7 +739,7 @@
 
     <div class="hero-img-box">
       <div class="sticker">CREATIVE<br>PASS</div>
-      <img src="1.jpg" alt="rupa_cerita community" class="hero-img" />
+      <img src="nj.jpeg" alt="rupa_cerita community" class="hero-img" />
     </div>
   </section>
 
@@ -741,7 +768,7 @@
 
   <section class="truth">
     <div class="truth-box">
-      <img src="3.jpg" alt="creative learning" />
+      <img src="nj.jpeg" alt="creative learning" />
       <div>
         <p class="small-title">HERE'S THE TRUTH...</p>
         <h2>KARYA BAGUS BUKAN CUMA SOAL BAKAT, TAPI JUGA LATIHAN DAN LINGKUNGAN YANG SUPPORTIF</h2>
