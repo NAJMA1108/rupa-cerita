@@ -448,16 +448,48 @@
       padding: 22px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       header {
-        grid-template-columns: 1fr;
+        display: block;
+        min-height: auto;
+        position: sticky;
+        top: 0;
+        background: #fff8ef;
       }
 
-      .logo,
+      .logo {
+        justify-content: center;
+        padding: 16px 10px 12px;
+        border-right: none;
+        border-bottom: 1.5px solid #7b3327;
+        font-size: 28px;
+      }
+
+      nav {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px 14px;
+        border-bottom: 1.5px solid #7b3327;
+        scrollbar-width: none;
+      }
+
+      nav::-webkit-scrollbar {
+        display: none;
+      }
+
       nav a {
         border-right: none;
-        border-bottom: 1px solid #7b3327;
-        padding: 15px;
+        flex: 0 0 auto;
+        padding: 0;
+      }
+
+      nav a span {
+        display: inline-block;
+        font-size: 11px;
+        padding: 8px 14px;
+        border-radius: 22px;
       }
 
       .hero,
@@ -467,19 +499,183 @@
         text-align: center;
       }
 
-      .hero h1,
+      .hero {
+        padding: 45px 6%;
+        gap: 35px;
+        min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
       .familiar h2 {
-        font-size: 45px;
+        font-size: 48px;
       }
 
       .features {
         justify-content: center;
       }
 
+      .hero-img {
+        height: 360px;
+        max-width: 430px;
+      }
+
+      .truth img {
+        height: 260px;
+        transform: rotate(0deg);
+      }
+
+      section {
+        padding: 60px 6%;
+      }
+
       .note {
         position: static;
         display: inline-block;
         margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      .logo {
+        font-size: 24px;
+        padding: 14px 10px 10px;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: flex-start;
+        padding: 8px 12px;
+      }
+
+      nav a span {
+        font-size: 10px;
+        padding: 7px 12px;
+      }
+
+      .hero {
+        padding: 45px 5%;
+      }
+
+      .small-title {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+        line-height: 1;
+      }
+
+      .hero h1 span {
+        padding: 0 10px;
+        border-radius: 12px;
+      }
+
+      .hero p,
+      .familiar p,
+      .truth p,
+      .cta p {
+        font-size: 15px;
+      }
+
+      .feature {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-img {
+        width: 100%;
+        height: 300px;
+        border-radius: 28px;
+      }
+
+      .sticker {
+        top: -15px;
+        right: 5px;
+        font-size: 12px;
+        padding: 12px 10px;
+      }
+
+      .marquee {
+        font-size: 15px;
+      }
+
+      .familiar h2,
+      .get h2,
+      .program h2,
+      .testimoni h2,
+      .faq h2,
+      .cta h2 {
+        font-size: 34px;
+        line-height: 1.1;
+      }
+
+      .script {
+        font-size: 25px;
+      }
+
+      .acc-item {
+        font-size: 15px;
+        padding: 16px 18px;
+        border-radius: 22px;
+        gap: 10px;
+        text-align: left;
+      }
+
+      .truth {
+        padding: 45px 5%;
+      }
+
+      .truth-box {
+        padding: 25px;
+        border-radius: 28px;
+      }
+
+      .truth h2 {
+        font-size: 27px;
+      }
+
+      .truth img {
+        height: 220px;
+        border-width: 6px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .program-card {
+        padding: 22px;
+        min-height: auto;
+      }
+
+      .faq-item {
+        font-size: 14px;
+        padding: 17px;
+      }
+
+      .cta {
+        margin: 25px 5% 50px;
+        padding: 35px 22px;
+        border-radius: 25px;
+      }
+
+      .btn {
+        padding: 12px 20px;
+        font-size: 13px;
+      }
+
+      footer {
+        font-size: 13px;
+        padding: 18px 10px;
       }
     }
   </style>
@@ -548,7 +744,7 @@
       <img src="3.jpg" alt="creative learning" />
       <div>
         <p class="small-title">HERE'S THE TRUTH...</p>
-        <h2>Talent helps, but practice & support change everything 💗</h2>
+        <h2>KARYA BAGUS BUKAN CUMA SOAL BAKAT, TAPI JUGA LATIHAN DAN LINGKUNGAN YANG SUPPORTIF</h2>
         <p>
           Di rupa_cerita, kamu bisa ikut kelas ringan, challenge mingguan, sharing session,
           dan dapet template kreatif yang bisa langsung dipakai untuk belajar.
