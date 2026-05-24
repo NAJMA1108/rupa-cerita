@@ -2,876 +2,731 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>rupa_cerita</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-      font-family: Arial, sans-serif;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      font-family:Arial,sans-serif;
     }
 
-    body {
-      background: #fff8ef;
-      color: #6b2a1f;
+    body{
+      background:#fff8ef;
+      color:#6b2a1f;
+      overflow-x:hidden;
     }
 
-    header {
-      min-height: 78px;
-      display: grid;
-      grid-template-columns: 2fr repeat(5, 1fr);
-      border-bottom: 2px solid #7b3327;
-      background: #fff8ef;
-      position: sticky;
-      top: 0;
-      z-index: 99;
+    header{
+      min-height:78px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      background:#fff8ef;
+      border-bottom:2px solid #7b3327;
+      position:sticky;
+      top:0;
+      z-index:999;
+      padding:0 20px;
     }
 
-    .logo,
-    nav a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-right: 1.5px solid #7b3327;
-      text-decoration: none;
-      color: #6b2a1f;
-      font-weight: 900;
+    .logo{
+      font-size:28px;
+      font-weight:1000;
+      color:#70291f;
+      padding:18px 0;
     }
 
-    .logo {
-      font-size: 30px;
-      justify-content: flex-start;
-      padding-left: 45px;
-      letter-spacing: -1px;
+    .menu-toggle{
+      display:none;
     }
 
-    .menu-toggle {
-      display: none;
+    .hamburger{
+      font-size:30px;
+      cursor:pointer;
+      color:#70291f;
+      display:none;
+      font-weight:900;
     }
 
-    .hamburger {
-      display: none;
-      font-size: 28px;
-      font-weight: 900;
-      color: #70291f;
-      cursor: pointer;
+    nav{
+      display:flex;
+      gap:10px;
     }
 
-    nav {
-      display: contents;
+    nav a{
+      text-decoration:none;
+      color:#70291f;
+      font-weight:900;
     }
 
-    nav a span {
-      padding: 10px 22px;
-      border-radius: 50%;
-      font-size: 13px;
+    nav a span{
+      display:block;
+      padding:10px 18px;
+      border-radius:30px;
+      font-size:12px;
     }
 
-    nav a:nth-child(1) span { background: #a8d4ff; }
-    nav a:nth-child(2) span { background: #ffe77a; }
-    nav a:nth-child(3) span { background: #ffc7df; }
-    nav a:nth-child(4) span { background: #a8d4ff; }
-    nav a:nth-child(5) span {
-      border: 1.5px solid #7b3327;
-      border-radius: 25px;
-      background: transparent;
+    nav a:nth-child(1) span{background:#a8d4ff;}
+    nav a:nth-child(2) span{background:#ffe77a;}
+    nav a:nth-child(3) span{background:#ffc7df;}
+    nav a:nth-child(4) span{background:#a8d4ff;}
+    nav a:nth-child(5) span{
+      border:1.5px solid #7b3327;
     }
 
-    .hero {
-      background: #ffc7d9;
-      padding: 70px 9%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 50px;
-      min-height: 620px;
+    .hero{
+      background:#ffc7d9;
+      padding:70px 9%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      gap:50px;
+      min-height:620px;
     }
 
-    .small-title {
-      font-size: 16px;
-      letter-spacing: 1px;
-      font-weight: 900;
-      margin-bottom: 18px;
+    .small-title{
+      font-size:15px;
+      letter-spacing:1px;
+      font-weight:900;
+      margin-bottom:18px;
     }
 
-    .hero h1 {
-      font-size: 64px;
-      line-height: 0.95;
-      color: #70291f;
-      margin-bottom: 20px;
-      font-weight: 1000;
+    .hero h1{
+      font-size:64px;
+      line-height:0.95;
+      color:#70291f;
+      margin-bottom:20px;
+      font-weight:1000;
     }
 
-    .hero h1 span {
-      display: inline-block;
-      background: #a8d4ff;
-      padding: 0 16px;
-      border-radius: 18px;
-      font-family: 'Brush Script MT', cursive;
-      font-weight: normal;
-      transform: rotate(-4deg);
+    .hero h1 span{
+      display:inline-block;
+      background:#a8d4ff;
+      padding:0 16px;
+      border-radius:18px;
+      font-family:'Brush Script MT',cursive;
+      transform:rotate(-4deg);
     }
 
-    .hero p {
-      max-width: 530px;
-      line-height: 1.6;
-      margin-bottom: 28px;
-      font-size: 17px;
+    .hero p{
+      max-width:530px;
+      line-height:1.7;
+      margin-bottom:28px;
+      font-size:17px;
     }
 
-    .features {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
+    .features{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:20px;
+      margin-bottom:35px;
     }
 
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      font-size: 13px;
+    .feature{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:16px;
+      width:270px;
+      font-weight:900;
+      font-size:16px;
+      line-height:1.2;
+      text-align:left;
     }
 
-    .circle {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
+    .circle{
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      flex-shrink:0;
     }
 
-    .blue { background: #a8d4ff; }
-    .yellow { background: #ffe77a; }
-    .pink { background: #ff8fbd; }
+    .blue{background:#a8d4ff;}
+    .yellow{background:#ffe77a;}
+    .pink{background:#ff8fbd;}
 
-    .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      border-radius: 30px;
-      border: 1.5px solid #70291f;
-      color: #70291f;
-      text-decoration: none;
-      font-weight: 900;
-      background: #fff8ef;
-      transition: 0.3s;
+    .btn{
+      display:inline-block;
+      padding:14px 28px;
+      border-radius:30px;
+      border:1.5px solid #70291f;
+      color:#70291f;
+      text-decoration:none;
+      font-weight:900;
+      background:#fff8ef;
+      transition:.3s;
     }
 
-    .btn:hover {
-      background: #70291f;
-      color: white;
-      transform: translateY(-5px);
+    .btn:hover{
+      background:#70291f;
+      color:white;
+      transform:translateY(-5px);
     }
 
-    .hero-img-box {
-      position: relative;
+    .hero-img-box{
+      position:relative;
     }
 
-    .hero-img {
-      width: 100%;
-      max-width: 520px;
-      height: 410px;
-      object-fit: cover;
-      border-radius: 32% 32% 28% 28%;
-      display: block;
-      margin: auto;
-      border: 8px solid #ffd8e5;
-      background: #ffd8e5;
+    .hero-img{
+      width:100%;
+      max-width:520px;
+      height:410px;
+      object-fit:cover;
+      border-radius:32% 32% 28% 28%;
+      display:block;
+      margin:auto;
+      border:8px solid #ffd8e5;
     }
 
-    .sticker {
-      position: absolute;
-      top: -20px;
-      right: 15px;
-      background: #70291f;
-      color: white;
-      padding: 18px 13px;
-      border-radius: 12px;
-      font-weight: 900;
-      transform: rotate(12deg);
-      border: 2px solid #fff8ef;
+    .sticker{
+      position:absolute;
+      top:-20px;
+      right:15px;
+      background:#70291f;
+      color:white;
+      padding:18px 13px;
+      border-radius:12px;
+      font-weight:900;
+      transform:rotate(12deg);
+      border:2px solid #fff8ef;
     }
 
-    .marquee {
-      background: #70291f;
-      color: white;
-      padding: 12px 0;
-      overflow: hidden;
-      white-space: nowrap;
-      font-size: 22px;
-      font-weight: 1000;
+    .marquee{
+      background:#70291f;
+      color:white;
+      padding:12px 0;
+      overflow:hidden;
+      white-space:nowrap;
+      font-size:22px;
+      font-weight:1000;
     }
 
-    .marquee span {
-      display: inline-block;
-      animation: jalan 18s linear infinite;
+    .marquee span{
+      display:inline-block;
+      animation:jalan 18s linear infinite;
     }
 
-    @keyframes jalan {
-      from { transform: translateX(100%); }
-      to { transform: translateX(-100%); }
+    @keyframes jalan{
+      from{transform:translateX(100%);}
+      to{transform:translateX(-100%);}
     }
 
-    section {
-      padding: 80px 9%;
+    section{
+      padding:80px 9%;
     }
 
-    .familiar {
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      gap: 50px;
-      background: #fff8ef;
-      align-items: center;
+    .familiar{
+      display:grid;
+      grid-template-columns:.75fr 1.25fr;
+      gap:50px;
+      align-items:center;
     }
 
-    .familiar h2 {
-      font-size: 62px;
-      line-height: 0.95;
-      color: #ff4f9b;
-      margin-bottom: 22px;
-      font-weight: 1000;
+    .familiar h2{
+      font-size:62px;
+      line-height:.95;
+      color:#ff4f9b;
+      margin-bottom:22px;
+      font-weight:1000;
     }
 
-    .script {
-      font-family: 'Brush Script MT', cursive;
-      font-size: 30px;
-      color: #70291f;
-      margin-bottom: 12px;
+    .script{
+      font-family:'Brush Script MT',cursive;
+      font-size:30px;
+      margin-bottom:12px;
     }
 
-    .accordion {
-      display: grid;
-      gap: 16px;
+    .accordion{
+      display:grid;
+      gap:16px;
     }
 
-    .acc-item {
-      padding: 20px 26px;
-      border-radius: 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 22px;
-      font-weight: 1000;
-      color: #70291f;
-      cursor: pointer;
-      transition: 0.3s;
+    .acc-item{
+      padding:20px 26px;
+      border-radius:30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:20px;
+      font-weight:1000;
+      cursor:pointer;
     }
 
-    .acc-item:hover {
-      transform: translateX(12px);
+    .acc-item:nth-child(1){background:#a8d4ff;}
+    .acc-item:nth-child(2){background:#70291f;color:white;}
+    .acc-item:nth-child(3){background:#ffc7d9;}
+    .acc-item:nth-child(4){background:#ff4f9b;color:white;}
+    .acc-item:nth-child(5){background:#ffe77a;}
+
+    .truth{
+      background:#ff4f9b;
     }
 
-    .acc-item:nth-child(1) { background: #a8d4ff; }
-    .acc-item:nth-child(2) { background: #70291f; color: white; }
-    .acc-item:nth-child(3) { background: #ffc7d9; }
-    .acc-item:nth-child(4) { background: #ff4f9b; color: white; }
-    .acc-item:nth-child(5) { background: #ffe77a; }
-
-    .truth {
-      background: #ff4f9b;
-      padding: 55px 9%;
+    .truth-box{
+      background:#ffd1df;
+      border-radius:38px;
+      padding:40px;
+      display:grid;
+      grid-template-columns:.7fr 1.3fr;
+      gap:35px;
+      align-items:center;
     }
 
-    .truth-box {
-      background: #ffd1df;
-      border-radius: 38px;
-      padding: 40px;
-      display: grid;
-      grid-template-columns: 0.7fr 1.3fr;
-      gap: 35px;
-      align-items: center;
+    .truth img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      border:10px solid white;
     }
 
-    .truth img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      border: 10px solid white;
-      transform: rotate(-3deg);
-      background: white;
+    .truth h2{
+      font-size:38px;
+      line-height:1.1;
+      margin-bottom:18px;
+      font-weight:1000;
     }
 
-    .truth h2 {
-      font-size: 38px;
-      line-height: 1.1;
-      margin-bottom: 18px;
-      color: #70291f;
-      font-weight: 1000;
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:24px;
     }
 
-    .truth p {
-      line-height: 1.6;
-      margin-bottom: 24px;
+    .card,
+    .program-card{
+      background:white;
+      border-radius:20px;
+      padding:28px;
+      transition:.3s;
     }
 
-    .get {
-      background: #fff8ef;
-      text-align: center;
+    .card:hover,
+    .program-card:hover{
+      transform:translateY(-8px);
     }
 
-    .get h2,
-    .program h2,
-    .testimoni h2,
-    .faq h2 {
-      font-size: 42px;
-      margin-bottom: 40px;
-      color: #70291f;
-      font-weight: 1000;
-      text-align: center;
+    .icon{
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      margin:0 auto 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:25px;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 24px;
+    .program{
+      background:#d9ecff;
     }
 
-    .card {
-      background: rgba(255,255,255,0.85);
-      border: 1.5px solid #b98f86;
-      border-radius: 18px;
-      padding: 28px;
-      min-height: 230px;
-      transition: 0.3s;
+    .label{
+      display:inline-block;
+      background:#ffe77a;
+      padding:8px 14px;
+      border-radius:20px;
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:15px;
     }
 
-    .card:hover {
-      transform: translateY(-10px) rotate(-1deg);
-      box-shadow: 0 15px 30px rgba(112, 41, 31, 0.18);
+    .faq{
+      background:#ffc7d9;
     }
 
-    .icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      margin: 0 auto 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
+    .faq-box{
+      display:grid;
+      gap:14px;
+      max-width:850px;
+      margin:auto;
     }
 
-    .card h3 {
-      margin-bottom: 12px;
-      color: #70291f;
-      font-weight: 1000;
+    .faq-item{
+      background:#fff8ef;
+      padding:20px;
+      border-radius:18px;
+      font-weight:900;
     }
 
-    .card p {
-      line-height: 1.5;
-      font-size: 14px;
+    .cta{
+      background:linear-gradient(135deg,#9dccff,#d6eaff);
+      margin:30px 9% 70px;
+      border-radius:35px;
+      padding:50px;
+      text-align:center;
+      position:relative;
     }
 
-    .program {
-      background: #d9ecff;
+    .note{
+      position:absolute;
+      right:35px;
+      top:35px;
+      background:#ffe77a;
+      padding:18px;
+      transform:rotate(8deg);
+      font-family:'Brush Script MT',cursive;
+      font-size:24px;
     }
 
-    .program-card {
-      background: #fff8ef;
-      border: 2px solid #70291f;
-      border-radius: 28px;
-      padding: 30px;
-      box-shadow: 8px 8px 0 #ffc7d9;
+    footer{
+      background:#70291f;
+      color:white;
+      text-align:center;
+      padding:22px;
     }
 
-    .program-card .label {
-      display: inline-block;
-      background: #ffe77a;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-weight: 900;
-      margin-bottom: 15px;
-      font-size: 13px;
-    }
+    @media(max-width:1024px){
 
-    .testimoni {
-      background: #fff8ef;
-    }
-
-    .quote {
-      text-align: left;
-    }
-
-    .quote strong {
-      display: block;
-      margin-top: 16px;
-      color: #ff4f9b;
-    }
-
-    .faq {
-      background: #ffc7d9;
-    }
-
-    .faq-box {
-      max-width: 850px;
-      margin: auto;
-      display: grid;
-      gap: 14px;
-    }
-
-    .faq-item {
-      background: #fff8ef;
-      padding: 20px 25px;
-      border-radius: 20px;
-      border: 1.5px solid #70291f;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .cta {
-      background: linear-gradient(135deg, #9dccff, #d6eaff);
-      margin: 30px 9% 70px;
-      border-radius: 35px;
-      padding: 50px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta h2 {
-      font-size: 44px;
-      color: #70291f;
-      margin-bottom: 18px;
-      font-weight: 1000;
-    }
-
-    .note {
-      position: absolute;
-      right: 35px;
-      top: 35px;
-      background: #ffe77a;
-      padding: 18px;
-      transform: rotate(8deg);
-      font-family: 'Brush Script MT', cursive;
-      font-size: 24px;
-      color: #70291f;
-    }
-
-    footer {
-      background: #70291f;
-      color: white;
-      text-align: center;
-      padding: 22px;
-    }
-
-    @media (max-width: 1024px) {
-      header {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: center;
-        min-height: auto;
-        position: sticky;
-        top: 0;
-        background: #fff8ef;
-        padding: 0;
+      .hamburger{
+        display:block;
       }
 
-      .logo {
-        justify-content: flex-start;
-        padding: 16px 20px;
-        border-right: none;
-        border-bottom: none;
-        font-size: 26px;
+      nav{
+        display:none;
+        position:absolute;
+        top:78px;
+        left:0;
+        width:100%;
+        background:#fff8ef;
+        flex-direction:column;
+        padding:15px;
+        border-bottom:2px solid #7b3327;
       }
 
-      .hamburger {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 16px 20px;
-      }
-
-      nav {
-        display: none;
-        grid-column: 1 / -1;
-        background: #fff8ef;
-        border-top: 1.5px solid #7b3327;
-        border-bottom: 1.5px solid #7b3327;
-        padding: 12px 16px 16px;
-      }
-
-      .menu-toggle:checked ~ nav {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      nav a {
-        border-right: none;
-        width: 100%;
-        padding: 0;
-      }
-
-      nav a span {
-        width: 100%;
-        display: block;
-        text-align: center;
-        font-size: 12px;
-        padding: 11px 14px;
-        border-radius: 18px;
+      .menu-toggle:checked ~ nav{
+        display:flex;
       }
 
       .hero,
       .familiar,
-      .truth-box {
-        grid-template-columns: 1fr;
-        text-align: center;
+      .truth-box{
+        grid-template-columns:1fr;
+        text-align:center;
       }
 
-      .hero {
-        padding: 45px 6%;
-        gap: 35px;
-        min-height: auto;
+      .hero h1{
+        font-size:48px;
       }
 
-      .hero h1 {
-        font-size: 48px;
+      .familiar h2{
+        font-size:48px;
       }
 
-      .familiar h2 {
-        font-size: 48px;
+      .hero-img{
+        height:360px;
       }
 
-      .features {
-        justify-content: center;
-      }
-
-      .hero-img {
-        height: 360px;
-        max-width: 430px;
-      }
-
-      .truth img {
-        height: 260px;
-        transform: rotate(0deg);
-      }
-
-      section {
-        padding: 60px 6%;
-      }
-
-      .note {
-        position: static;
-        display: inline-block;
-        margin-bottom: 20px;
+      .truth img{
+        height:260px;
       }
     }
 
-    @media (max-width: 600px) {
-      body {
-        overflow-x: hidden;
+    @media(max-width:600px){
+
+      .logo{
+        font-size:24px;
       }
 
-      .logo {
-        font-size: 24px;
-        padding: 14px 10px 10px;
-        text-align: center;
+      .hero{
+        padding:45px 5%;
       }
 
-      .hamburger {
-        font-size: 25px;
-        padding: 14px 18px;
+      .hero h1{
+        font-size:38px;
       }
 
-      nav a span {
-        font-size: 11px;
-        padding: 10px 12px;
+      .hero p{
+        font-size:15px;
       }
 
-      .hero {
-        padding: 45px 5%;
+      .feature{
+        width:270px;
+        justify-content:flex-start;
       }
 
-      .small-title {
-        font-size: 12px;
-        line-height: 1.4;
+      .hero-img{
+        height:300px;
+        border-radius:28px;
       }
 
-      .hero h1 {
-        font-size: 38px;
-        line-height: 1;
-      }
-
-      .hero h1 span {
-        padding: 0 10px;
-        border-radius: 12px;
-      }
-
-      .hero p,
-      .familiar p,
-      .truth p,
-      .cta p {
-        font-size: 15px;
-      }
-
-      .feature {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .hero-img {
-        width: 100%;
-        height: 300px;
-        border-radius: 28px;
-      }
-
-      .sticker {
-        top: -15px;
-        right: 5px;
-        font-size: 12px;
-        padding: 12px 10px;
-      }
-
-      .marquee {
-        font-size: 15px;
+      .marquee{
+        font-size:15px;
       }
 
       .familiar h2,
-      .get h2,
-      .program h2,
-      .testimoni h2,
-      .faq h2,
-      .cta h2 {
-        font-size: 34px;
-        line-height: 1.1;
+      .truth h2{
+        font-size:34px;
       }
 
-      .script {
-        font-size: 25px;
+      .acc-item{
+        font-size:14px;
+        padding:16px;
       }
 
-      .acc-item {
-        font-size: 15px;
-        padding: 16px 18px;
-        border-radius: 22px;
-        gap: 10px;
-        text-align: left;
+      .cards{
+        grid-template-columns:1fr;
       }
 
-      .truth {
-        padding: 45px 5%;
+      .cta{
+        margin:25px 5% 50px;
+        padding:35px 22px;
       }
 
-      .truth-box {
-        padding: 25px;
-        border-radius: 28px;
-      }
-
-      .truth h2 {
-        font-size: 27px;
-      }
-
-      .truth img {
-        height: 220px;
-        border-width: 6px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .card,
-      .program-card {
-        padding: 22px;
-        min-height: auto;
-      }
-
-      .faq-item {
-        font-size: 14px;
-        padding: 17px;
-      }
-
-      .cta {
-        margin: 25px 5% 50px;
-        padding: 35px 22px;
-        border-radius: 25px;
-      }
-
-      .btn {
-        padding: 12px 20px;
-        font-size: 13px;
-      }
-
-      footer {
-        font-size: 13px;
-        padding: 18px 10px;
+      .note{
+        position:static;
+        display:inline-block;
+        margin-bottom:20px;
       }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">rupa_cerita</div>
-    <input type="checkbox" id="menu-toggle" class="menu-toggle">
-    <label for="menu-toggle" class="hamburger">☰</label>
-    <nav>
-      <a href="#home"><span>HOME</span></a>
-      <a href="#about"><span>ABOUT</span></a>
-      <a href="#program"><span>PROGRAM</span></a>
-      <a href="#benefit"><span>BENEFIT</span></a>
-      <a href="#contact"><span>JOIN US</span></a>
-    </nav>
-  </header>
 
-  <section class="hero" id="home">
-    <div>
-      <p class="small-title">A CREATIVE SPACE FOR WOMEN TO GROW</p>
-      <h1>CREATE. SHARE. GROW YOUR <span>Cerita</span></h1>
-      <p>
-        rupa_cerita adalah komunitas kreatif untuk perempuan muda yang ingin belajar desain,
-        content creation, personal branding, dan membangun karya digital dengan cara yang santai dan menyenangkan.
-      </p>
+<header>
+  <div class="logo">rupa_cerita</div>
 
-      <div class="features">
-        <div class="feature"><div class="circle blue">🎨</div>CREATIVE<br>CLASS</div>
-        <div class="feature"><div class="circle yellow">👭</div>COMMUNITY<br>SUPPORT</div>
-        <div class="feature"><div class="circle pink">✨</div>WEEKLY<br>CHALLENGE</div>
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <nav>
+    <a href="#home"><span>HOME</span></a>
+    <a href="#about"><span>ABOUT</span></a>
+    <a href="#program"><span>PROGRAM</span></a>
+    <a href="#benefit"><span>BENEFIT</span></a>
+    <a href="#contact"><span>JOIN US</span></a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+
+  <div>
+    <p class="small-title">A CREATIVE SPACE FOR WOMEN TO GROW</p>
+
+    <h1>CREATE. SHARE. GROW YOUR <span>Cerita</span></h1>
+
+    <p>
+      rupa_cerita adalah komunitas kreatif untuk perempuan muda yang ingin belajar desain,
+      content creation, personal branding, dan membangun karya digital dengan cara yang santai dan menyenangkan.
+    </p>
+
+    <div class="features">
+
+      <div class="feature">
+        <div class="circle blue">🎨</div>
+        CREATIVE CLASS
       </div>
 
-      <a href="#program" class="btn">EXPLORE PROGRAM →</a>
+      <div class="feature">
+        <div class="circle yellow">👭</div>
+        COMMUNITY SUPPORT
+      </div>
+
+      <div class="feature">
+        <div class="circle pink">✨</div>
+        WEEKLY CHALLENGE
+      </div>
+
     </div>
 
-    <div class="hero-img-box">
-      <div class="sticker">CREATIVE<br>PASS</div>
-     <img src="1.jpg" alt="rupa_cerita community" class="hero-img" />
-    </div>
-  </section>
-
-  <div class="marquee">
-    <span>DESIGN • STORYTELLING • CONTENT CREATION • PORTFOLIO • COMMUNITY • DESIGN • STORYTELLING • CONTENT CREATION •</span>
+    <a href="#program" class="btn">EXPLORE PROGRAM →</a>
   </div>
 
-  <section class="familiar" id="about">
+  <div class="hero-img-box">
+    <div class="sticker">CREATIVE<br>PASS</div>
+
+    <img src="1.jpg" class="hero-img">
+  </div>
+
+</section>
+
+<div class="marquee">
+  <span>
+    DESIGN • STORYTELLING • CONTENT CREATION • PORTFOLIO • COMMUNITY •
+  </span>
+</div>
+
+<section class="familiar" id="about">
+
+  <div>
+    <h2>SOUND FAMILIAR?</h2>
+
+    <p class="script">Kamu nggak sendirian!</p>
+
+    <p>
+      Banyak yang pengen mulai berkarya, tapi sering bingung harus mulai dari mana.
+      Di rupa_cerita, kamu bisa belajar bareng dan bangun percaya diri lewat karya.
+    </p>
+  </div>
+
+  <div class="accordion">
+
+    <div class="acc-item">
+      <span>01 BINGUNG MAU MULAI DARI MANA</span>
+      <b>+</b>
+    </div>
+
+    <div class="acc-item">
+      <span>02 SUSAH KONSISTEN BIKIN KONTEN</span>
+      <b>+</b>
+    </div>
+
+    <div class="acc-item">
+      <span>03 DESAIN MASIH TERLIHAT BIASA</span>
+      <b>+</b>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="truth">
+
+  <div class="truth-box">
+
+    <img src="3.jpg">
+
     <div>
-      <h2>SOUND FAMILIAR?</h2>
-      <p class="script">Kamu nggak sendirian!</p>
+      <p class="small-title">HERE'S THE TRUTH...</p>
+
+      <h2>
+        GREAT WORK COMES FROM PRACTICE + A SUPPORTIVE CIRCLE ✨
+      </h2>
+
       <p>
-        Banyak yang pengen mulai berkarya, tapi sering bingung harus mulai dari mana.
-        Di rupa_cerita, kamu bisa belajar bareng, dapet ide, dan pelan-pelan bangun percaya diri lewat karya.
+        Di rupa_cerita, kamu bisa ikut kelas ringan,
+        challenge mingguan, sharing session,
+        dan dapet template kreatif.
       </p>
+
+      <a href="#benefit" class="btn">SEE HOW IT WORKS →</a>
     </div>
 
-    <div class="accordion">
-      <div class="acc-item" onclick="showInfo('Mulai dari ide kecil dulu, nanti bisa berkembang jadi karya yang keren.')"><span>01 BINGUNG MAU MULAI DARI MANA</span><b>+</b></div>
-      <div class="acc-item" onclick="showInfo('Konsisten lebih mudah kalau punya teman dan komunitas yang support.')"><span>02 SUSAH KONSISTEN BIKIN KONTEN</span><b>+</b></div>
-      <div class="acc-item" onclick="showInfo('Di rupa_cerita, kamu bisa belajar bikin visual yang lebih rapi dan aesthetic.')"><span>03 DESAIN MASIH TERLIHAT BIASA</span><b>+</b></div>
-      <div class="acc-item" onclick="showInfo('Percaya diri bisa tumbuh saat kamu berani mencoba dan membagikan karya.')"><span>04 KURANG PERCAYA DIRI</span><b>+</b></div>
-      <div class="acc-item" onclick="showInfo('Kamu tidak perlu jago dulu untuk gabung, yang penting mau belajar.')"><span>05 MERASA BELUM PUNYA SKILL</span><b>+</b></div>
+  </div>
+
+</section>
+
+<section class="get" id="benefit">
+
+  <h2 style="text-align:center; font-size:42px; margin-bottom:40px;">
+    WHAT YOU'LL GET
+  </h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon blue">🎨</div>
+      <h3>CREATIVE CLASS</h3>
+      <p>Kelas desain dan storytelling visual.</p>
     </div>
-  </section>
 
-  <section class="truth">
-    <div class="truth-box">
-     <img src="3.jpg" alt="creative learning" />
-      <div>
-        <p class="small-title">HERE'S THE TRUTH...</p>
-        <h2>KARYA BAGUS BUKAN CUMA SOAL BAKAT, TAPI JUGA LATIHAN DAN LINGKUNGAN YANG SUPPORTIF</h2>
-        <p>
-          Di rupa_cerita, kamu bisa ikut kelas ringan, challenge mingguan, sharing session,
-          dan dapet template kreatif yang bisa langsung dipakai untuk belajar.
-        </p>
-        <a href="#benefit" class="btn">SEE HOW IT WORKS →</a>
-      </div>
+    <div class="card">
+      <div class="icon yellow">📁</div>
+      <h3>FREE TEMPLATE</h3>
+      <p>Template Canva dan worksheet aesthetic.</p>
     </div>
-  </section>
 
-  <section class="get" id="benefit">
-    <h2>WHAT YOU'LL GET</h2>
-    <div class="cards">
-      <div class="card">
-        <div class="icon blue">🎨</div>
-        <h3>CREATIVE CLASS</h3>
-        <p>Kelas singkat tentang desain, content planning, dan storytelling visual.</p>
-      </div>
-      <div class="card">
-        <div class="icon yellow">📁</div>
-        <h3>FREE TEMPLATE</h3>
-        <p>Template Canva, content planner, dan worksheet untuk bantu kamu mulai berkarya.</p>
-      </div>
-      <div class="card">
-        <div class="icon pink">👭</div>
-        <h3>COMMUNITY SUPPORT</h3>
-        <p>Tempat sharing ide, tanya jawab, dan saling support sesama perempuan kreatif.</p>
-      </div>
-      <div class="card">
-        <div class="icon blue">🏆</div>
-        <h3>PORTFOLIO CHALLENGE</h3>
-        <p>Challenge mingguan supaya kamu punya karya yang bisa dimasukkan ke portofolio.</p>
-      </div>
+    <div class="card">
+      <div class="icon pink">👭</div>
+      <h3>COMMUNITY SUPPORT</h3>
+      <p>Tempat sharing dan belajar bareng.</p>
     </div>
-  </section>
 
-  <section class="program" id="program">
-    <h2>OUR COMMUNITY PROGRAM</h2>
-    <div class="cards">
-      <div class="program-card">
-        <span class="label">Beginner Friendly</span>
-        <h3>Visual Storytelling Class</h3>
-        <p>Belajar menyusun visual dan cerita supaya konten terlihat lebih menarik dan punya pesan.</p>
-      </div>
-      <div class="program-card">
-        <span class="label">Weekly Activity</span>
-        <h3>Creative Challenge</h3>
-        <p>Tantangan mingguan seperti membuat poster, moodboard, carousel, atau mini portfolio.</p>
-      </div>
-      <div class="program-card">
-        <span class="label">Growth Session</span>
-        <h3>Sharing & Review</h3>
-        <p>Sesi santai untuk review karya, berbagi inspirasi, dan belajar dari member lain.</p>
-      </div>
+  </div>
+
+</section>
+
+<section class="program" id="program">
+
+  <h2 style="text-align:center; font-size:42px; margin-bottom:40px;">
+    OUR COMMUNITY PROGRAM
+  </h2>
+
+  <div class="cards">
+
+    <div class="program-card">
+      <span class="label">Beginner Friendly</span>
+      <h3>Visual Storytelling</h3>
+      <p>Belajar visual dan storytelling untuk konten aesthetic.</p>
     </div>
-  </section>
 
-  <section class="testimoni">
-    <h2>WHAT MEMBERS SAY</h2>
-    <div class="cards">
-      <div class="card quote">
-        <p>“Awalnya aku bingung bikin konten apa, tapi setelah ikut challenge jadi lebih punya arah.”</p>
-        <strong>- Rara, Student</strong>
-      </div>
-      <div class="card quote">
-        <p>“Komunitasnya nyaman banget, bisa sharing tanpa takut dinilai.”</p>
-        <strong>- Dinda, Content Creator</strong>
-      </div>
-      <div class="card quote">
-        <p>“Template dan kelasnya ngebantu aku bikin portofolio pertama.”</p>
-        <strong>- Mita, Beginner Designer</strong>
-      </div>
+    <div class="program-card">
+      <span class="label">Weekly Activity</span>
+      <h3>Creative Challenge</h3>
+      <p>Tantangan mingguan untuk bikin karya baru.</p>
     </div>
-  </section>
 
-  <section class="faq">
-    <h2>FAQ</h2>
-    <div class="faq-box">
-      <div class="faq-item" onclick="showInfo('Bisa banget! Komunitas ini dibuat beginner friendly.')">Apakah pemula boleh gabung?</div>
-      <div class="faq-item" onclick="showInfo('Kamu bisa belajar desain, content planning, storytelling, dan personal branding.')">Apa saja yang dipelajari?</div>
-      <div class="faq-item" onclick="showInfo('Kelas dilakukan secara online dengan materi ringan dan fleksibel.')">Kelasnya online atau offline?</div>
-      <div class="faq-item" onclick="showInfo('Tidak harus. Kamu bisa mulai dari HP dan aplikasi sederhana seperti Canva.')">Apakah harus punya laptop?</div>
+    <div class="program-card">
+      <span class="label">Growth Session</span>
+      <h3>Sharing & Review</h3>
+      <p>Sharing santai dan review karya member.</p>
     </div>
-  </section>
 
-  <section class="cta" id="contact">
-    <div class="note">Create it.<br>Share it.<br>Grow it. 💗</div>
-    <h2>READY TO JOIN RUPA_CERITA?</h2>
-    <p>Gabung komunitas kreatif yang nyaman, fun, dan supportif untuk mulai bikin karya digitalmu.</p>
-    <br>
-    <a href="mailto:hello@rupacerita.com" class="btn">JOIN THE COMMUNITY →</a>
-  </section>
+  </div>
 
-  <footer>
-    <p>© 2026 rupa_cerita. Create, share, and grow together.</p>
-  </footer>
+</section>
 
-  <script>
-    function showInfo(text) {
-      alert(text);
-    }
-  </script>
+<section class="faq">
+
+  <h2 style="text-align:center; font-size:42px; margin-bottom:40px;">
+    FAQ
+  </h2>
+
+  <div class="faq-box">
+
+    <div class="faq-item">
+      Apakah pemula boleh gabung?
+    </div>
+
+    <div class="faq-item">
+      Kelasnya online atau offline?
+    </div>
+
+    <div class="faq-item">
+      Apakah harus punya laptop?
+    </div>
+
+  </div>
+
+</section>
+
+<section class="cta" id="contact">
+
+  <div class="note">
+    Create it.<br>
+    Share it.<br>
+    Grow it 💗
+  </div>
+
+  <h2 style="font-size:44px; margin-bottom:18px;">
+    READY TO JOIN RUPA_CERITA?
+  </h2>
+
+  <p>
+    Gabung komunitas kreatif yang nyaman,
+    fun, dan supportif ✨
+  </p>
+
+  <br>
+
+  <a href="#" class="btn">
+    JOIN THE COMMUNITY →
+  </a>
+
+</section>
+
+<footer>
+  © 2026 rupa_cerita. Create, share, and grow together.
+</footer>
+
 </body>
 </html>
